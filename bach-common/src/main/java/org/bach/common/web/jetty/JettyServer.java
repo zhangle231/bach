@@ -4,7 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bach.common.web.jetty.handler.HelloWorld;
+import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 
 public class JettyServer {
@@ -35,7 +38,13 @@ public class JettyServer {
 		File f = new File("");
 		System.out.println(f.getAbsolutePath());
 		handler.setResourceBase(resourceBase);
-		server.setHandler(handler);
+
+		// Add the ResourceHandler to the server.
+		HandlerList handlers = new HandlerList();
+		handlers.setHandlers(new Handler[] { handler, new HelloWorld() });
+//		handlers.setHandlers(new Handler[] { new HelloWorld() });
+		
+		server.setHandler(handlers);
 		try {
 			server.start();
 			server.join();

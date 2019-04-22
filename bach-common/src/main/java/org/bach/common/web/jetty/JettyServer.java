@@ -4,11 +4,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bach.common.web.jetty.handler.HelloServlet;
 import org.bach.common.web.jetty.handler.HelloWorld;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
+import org.eclipse.jetty.servlet.ServletHandler;
 
 public class JettyServer {
 
@@ -41,9 +43,16 @@ public class JettyServer {
 
 		// Add the ResourceHandler to the server.
 		HandlerList handlers = new HandlerList();
-		handlers.setHandlers(new Handler[] { handler, new HelloWorld() });
+
+		ServletHandler servletHandler = new ServletHandler();
+
+//		handlers.setHandlers(new Handler[] { handler, servletHandler, new HelloWorld() });
+		handlers.setHandlers(new Handler[] { handler, servletHandler });
+//		handlers.setHandlers(new Handler[] { new HelloWorld(),servletHandler});
 //		handlers.setHandlers(new Handler[] { new HelloWorld() });
-		
+
+		servletHandler.addServletWithMapping(HelloServlet.class, "/hello");
+
 		server.setHandler(handlers);
 		try {
 			server.start();

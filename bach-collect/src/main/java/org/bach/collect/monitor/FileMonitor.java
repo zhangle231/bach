@@ -1,6 +1,9 @@
 package org.bach.collect.monitor;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.logging.log4j.Logger;
 import org.bach.common.log.BachLogger;
@@ -20,10 +23,45 @@ public class FileMonitor extends Thread {
 			throw new RuntimeException("root path is not exist.");
 		}
 		
+		/*
+		for (int i = 0; i < 1000000; i++) {
+			File tmp = new File(root.getPath() + "/file_" + i);
+			try {
+				tmp.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			LOG.debug("create file:{}" , tmp.getAbsolutePath());
+		}
+		*/
+		
+		Map<String,Long> fileMap = new HashMap<>();
+		LOG.debug("init file map.");
+		fileMap.clear();
+		for(File f : root.listFiles()) {
+			fileMap.put(f.getAbsolutePath(), f.lastModified());
+		}
+		LOG.debug("init file map end.");
+		
 		while (true) {
-			LOG.debug("check file.");
 			File[] files = root.listFiles();
 			LOG.debug("get file count:{}" , files.length);
+			
+			for(File newFile : files) {
+				Long modify = fileMap.get(newFile.getAbsolutePath());
+				if (modify == null) {
+					LOG.debug("new file.");
+				}else if (modify != newFile.lastModified()) {
+					LOG.debug("file modify.");
+				}
+				fileMap.put(newFile.getAbsolutePath(), newFile.lastModified());
+			}
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

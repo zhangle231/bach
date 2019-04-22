@@ -1,83 +1,11 @@
 <html>
 <head>
+<meta charset="UTF-8">
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
-	
 </script>
 </head>
 <body>
-	<div>
-		<div>
-			<h3>文件信息</h3>
-		</div>
-		<div>
-			<ul>
-				<li>监听目录：e:/project/test</li>
-				<li>总文件数量：123802</li>
-				<li>总文件大小:123GB</li>
-				<li>监控开始时间 :<em>2019-04-21 19:35:00</em></li>
-				<li>上次更新时间 :<em>2019-04-21 19:45:00</em></li>
-				<li>下次更新时间 :<em>2019-04-21 19:55:00</em></li>
-				<li class="nextUpdate">距离下次更新时间:<em>00:05:00</em></li>
-				<li>上次更新文件数/大小:<em>35/250MB</em></li>
-				<li>当日更新文件数/大小:<em>350/25GB</em></li>
-				<li>总执行批次:<em>350</em></li>
-			</ul>
-		</div>
-	</div>
-	<div>
-		<h3>最近更新的10个文件</h3>
-		<div>
-			<table
-				class="lastUpdataFiles"
-				border="1px"
-			>
-				<tr>
-					<th>序号</th>
-					<th>文件名</th>
-					<th>更新时间</th>
-					<th>修改时间</th>
-					<th>文件大小</th>
-					<th>是否归档</th>
-					<th>归档时间</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>file-1.dsv</td>
-					<td>2019-04-21 19:49:00</td>
-					<td>2019-04-21 19:29:00</td>
-					<td>12MB</td>
-					<td>否</td>
-					<td>NULL</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<div>
-		<h3>最近更新的10个批次</h3>
-		<div>
-			<table border="1px">
-				<tr>
-					<th>序号</th>
-					<th>批次开始时间</th>
-					<th>批次结束时间</th>
-					<th>文件个数</th>
-					<th>文件大小</th>
-					<th>详情</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>2019-04-21 19:49:00</td>
-					<td>2019-04-21 19:29:00</td>
-					<td>32</td>
-					<td>12MB</td>
-					<td><a href="#">详情</a></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	<div>
-		<a href="#">所有文件清单</a> <a href="#">查找指定文件</a>
-	</div>
+
 </body>
 <script type="text/javascript">
 	$(function() {
@@ -89,21 +17,18 @@
 			var tdF3 = "<td>" + "2019-04-21 19:49:00" + "</td>";
 			var tdF4 = "<td>" + "2019-04-21 19:29:00" + "</td>";
 			var tdF5 = "<td>" + "12MB" + "</td>";
-			var tdF6 = "<td>" + "否" + "</td>";
+			var tdF6 = "<td>" + "锟斤拷" + "</td>";
 			var tdF7 = "<td>" + "NULL" + "</td>";
 			var fInfo = tdF1 + tdF2 + tdF3 + tdF4 + tdF5 + tdF6 + tdF7;
 			tmp += "<tr>" + fInfo + "</tr>";
 		}
 		tuf.after(tmp);
 		
-		var nextUpdate = 10;
-		setInterval(function(){
-			var em = $(".nextUpdate em");
-			em.text(nextUpdate--);
-			if (nextUpdate < 0) {
-				nextUpdate = 10;
-			}
-		},1000);
+		console.log(123);
+		
+		$.get("/api",function(data,status){
+			console.log(data.name);
+  		});
 	});
 </script>
 </html>

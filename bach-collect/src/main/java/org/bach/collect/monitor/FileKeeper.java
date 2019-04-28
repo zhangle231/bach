@@ -28,17 +28,17 @@ public abstract class FileKeeper implements Runnable {
 
 	@Override
 	public void run() {
-		int showStatCnt = 60;
+		int showStatCnt = 600;
 		while (true) {
 			// process
 			process();
 			// showStat
 			if (showStatCnt-- == 0) {
 				showStat();
-				showStatCnt = 60;
+				showStatCnt = 600;
 			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

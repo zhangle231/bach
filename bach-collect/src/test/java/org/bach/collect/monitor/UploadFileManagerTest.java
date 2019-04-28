@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.logging.log4j.Logger;
+import org.bach.collect.monitor.upload.UploadFileManager;
 import org.bach.common.log.BachLogger;
 
 import junit.framework.TestCase;

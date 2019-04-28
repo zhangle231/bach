@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.logging.log4j.Logger;
+import org.bach.collect.monitor.upload.UploadFileManager;
 import org.bach.common.hadoop.FileManager;
 import org.bach.common.log.BachLogger;
 

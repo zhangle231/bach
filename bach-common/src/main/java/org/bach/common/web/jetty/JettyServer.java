@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.bach.common.web.jetty.handler.ApiService;
 import org.bach.common.web.jetty.handler.HelloServlet;
-import org.bach.common.web.jetty.handler.HelloWorld;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;

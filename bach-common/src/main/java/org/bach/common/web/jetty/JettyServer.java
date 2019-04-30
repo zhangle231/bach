@@ -19,6 +19,8 @@ public class JettyServer {
 	private String resourceBase;
 
 	private List<String> welcomFiles;
+	
+	private ServletHandler servletHandler = new ServletHandler();
 
 	private Server server;
 
@@ -27,6 +29,14 @@ public class JettyServer {
 		this.port = port;
 		this.resourceBase = resourceBase;
 		this.welcomFiles = welcomFiles;
+	}
+
+	public ServletHandler getServletHandler() {
+		return servletHandler;
+	}
+
+	public void setServletHandler(ServletHandler servletHandler) {
+		this.servletHandler = servletHandler;
 	}
 
 	public void start() {
@@ -43,8 +53,6 @@ public class JettyServer {
 
 		// Add the ResourceHandler to the server.
 		HandlerList handlers = new HandlerList();
-
-		ServletHandler servletHandler = new ServletHandler();
 
 //		handlers.setHandlers(new Handler[] { handler, servletHandler, new HelloWorld() });
 		handlers.setHandlers(new Handler[] { handler, servletHandler });

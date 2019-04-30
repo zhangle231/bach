@@ -44,9 +44,9 @@ public class UploadFileKeeperTest extends TestCase {
 
 	public void testMain() {
 		LOG.debug("test");
-		FileKeeper fk = new UploadFileKeeper();
+		final FileKeeper fk = new UploadFileKeeper();
 
-		List<File> beginFs = new ArrayList<File>();
+		final List<File> beginFs = new ArrayList<File>();
 		for (int i = 0; i < 300; i++) {
 			beginFs.add(new File("./" + i + ".txt"));
 		}

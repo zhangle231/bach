@@ -38,7 +38,7 @@ public class MoveFileKeeper extends FileKeeper implements FileHandler {
 		}
 	}
 
-	public boolean checkModifyDate(File file) {
+	public static boolean checkModifyDate(File file) {
 		if (!file.exists()) {
 			LOG.error("not exist file:{}", file.getAbsoluteFile());
 			return false;

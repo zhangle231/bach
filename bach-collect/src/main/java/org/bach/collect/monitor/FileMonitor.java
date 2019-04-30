@@ -25,10 +25,12 @@ public class FileMonitor extends Thread {
 
 		// start ukf
 		Thread ufkt = new Thread(ufk);
+		ufkt.setName("upload-thread");
 		ufkt.start();
 
 		// start mfk
 		Thread mfkt = new Thread(mfk);
+		mfkt.setName("move-file-thread");
 		mfkt.start();
 
 		File root = new File(monitorPath);
@@ -63,7 +65,9 @@ public class FileMonitor extends Thread {
 					LOG.debug("modify file:{}", newFile.getAbsoluteFile());
 				} else if (modify == newFile.lastModified()) {
 					// 当文件不变时，判断是否移动
-					mfk.addFile(newFile);
+					if (newFile.isFile() && MoveFileKeeper.checkModifyDate(newFile)) {
+						mfk.addFile(newFile);
+					}
 					continue;
 				} else {
 					LOG.debug("error ++++++++++");

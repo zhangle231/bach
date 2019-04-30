@@ -8,7 +8,13 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.mortbay.log.Log;
+
 public class FileTest {
+
+	public void parseFile(File f) {
+
+	}
 
 	public static void main(String[] args) {
 
@@ -27,18 +33,20 @@ public class FileTest {
 
 			String line = new String(b, "utf-8");
 
-			String fileName;
+			String fileName = null;
+			StringBuffer context = new StringBuffer();
 			StringBuffer sb = new StringBuffer();
 			for (int i = 0; i < line.length(); i++) {
 				char charAt = line.charAt(i);
 				if (charAt == '|') {
 					fileName = sb.toString();
 					sb.setLength(0);
-					System.out.println("fileName:[" + fileName + "]");
+//					System.out.println("fileName:[" + fileName + "]");
 					continue;
 				}
 				if (charAt == '\t' && line.charAt(i + 1) == '1') {
-					System.out.println("line: [" + sb.toString() + "\n]");
+//					System.out.println("line: [" + sb.toString() + "\n]");
+					context.append(sb);
 					sb.setLength(0);
 					i++;
 					continue;
@@ -60,7 +68,8 @@ public class FileTest {
 					}
 					if (flat && line.charAt(i + 2) == split) {
 						sb.append(charAt);
-						System.out.println("line: [" + sb.toString() + "]");
+//						System.out.println("line: [" + sb.toString() + "]");
+						context.append(sb);
 						sb.setLength(0);
 						continue;
 					}
@@ -71,6 +80,9 @@ public class FileTest {
 				}
 				sb.append(charAt);
 			}
+
+			System.out.println(fileName);
+			System.out.println(context.toString());
 
 			fis.close();
 		} catch (FileNotFoundException e) {

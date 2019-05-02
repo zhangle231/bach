@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
@@ -17,6 +18,23 @@ public class MoveFileKeeperTest extends TestCase {
 
 	private MoveFileKeeper vfk = new MoveFileKeeper();
 
+	public void testRemove() {
+		List<String> archives = new ArrayList<String>();
+
+		archives.add("123");
+		archives.add("123");
+		archives.add("123");
+
+		Iterator<String> iterator = archives.iterator();
+		while (iterator.hasNext()) {
+			String file = iterator.next();
+			LOG.debug("remove:{}", file);
+			iterator.remove();
+		}
+		LOG.debug("size:{}", archives.size());
+
+	}
+
 	public void testCheckModifyDate() {
 		File file = null;
 		try {
@@ -27,9 +45,9 @@ public class MoveFileKeeperTest extends TestCase {
 		} finally {
 			file.deleteOnExit();
 		}
-		
+
 	}
-	
+
 	public void testMove() {
 		File f = new File("D:\\test\\1.txt");
 		try {
@@ -41,9 +59,9 @@ public class MoveFileKeeperTest extends TestCase {
 
 	public void testMain() {
 		LOG.debug("test");
-		FileKeeper fk = new MoveFileKeeper();
+		final FileKeeper fk = new MoveFileKeeper();
 
-		List<File> beginFs = new ArrayList<File>();
+		final List<File> beginFs = new ArrayList<File>();
 		for (int i = 0; i < 300; i++) {
 			beginFs.add(new File("./" + i + ".txt"));
 		}

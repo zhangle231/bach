@@ -70,7 +70,7 @@ class BounceFrame extends JFrame {
 	}
 
 	public void addBall() {
-		Ball ball = new Ball();
+		final Ball ball = new Ball();
 		comp.add(ball);
 		class BallRunable implements Runnable {
 

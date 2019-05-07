@@ -34,30 +34,30 @@ public class FileClean {
 	}
 
 	public static void main(String[] args) throws Throwable {
-		for (int i = 0; i < 164; i++) {
-			System.out.println("msg_" + i + " string,");
-		}
-		
-		
-		char c = '\033';
-		String tmp = String.valueOf(c);
-		byte[] bytes = tmp.getBytes("UTF-8");
-		byte[] newline = "\n".getBytes("UTF-8");
-		
-		System.out.println(tmp);
-		
-		String line = "ogg_PGI_LLREGISTER_2019-04-28_08-58-17.dsv";
-		
-//		Pattern pattern = Pattern.compile("(.*)_\\d4-\\d2-\\d2_\\d2-\\d2-\\d2");
-		Pattern pattern = Pattern.compile("ogg_(.*)_\\d{4}-\\d{2}-\\d{2}_\\d{2}-\\d{2}-\\d{2}");
-		
-		Matcher matcher = pattern.matcher(line);
-		
-		if (matcher.find()) {
-			String string = matcher.group(1);
-			System.out.println(string);
-		}
-		
+//		for (int i = 0; i < 164; i++) {
+//			System.out.println("msg_" + i + " string,");
+//		}
+//		
+//		
+//		char c = '\033';
+//		String tmp = String.valueOf(c);
+//		byte[] bytes = tmp.getBytes("UTF-8");
+//		byte[] newline = "\n".getBytes("UTF-8");
+//		
+//		System.out.println(tmp);
+//		
+//		String line = "ogg_PGI_LLREGISTER_2019-04-28_08-58-17.dsv";
+//		
+////		Pattern pattern = Pattern.compile("(.*)_\\d4-\\d2-\\d2_\\d2-\\d2-\\d2");
+//		Pattern pattern = Pattern.compile("ogg_(.*)_\\d{4}-\\d{2}-\\d{2}_\\d{2}-\\d{2}-\\d{2}");
+//		
+//		Matcher matcher = pattern.matcher(line);
+//		
+//		if (matcher.find()) {
+//			String string = matcher.group(1);
+//			System.out.println(string);
+//		}
+
 		File f = new File("D:\\code\\bach\\bach-common\\target\\a.txt");
 		FileClean fc = new FileClean();
 		try {
@@ -67,6 +67,49 @@ public class FileClean {
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
+	}
+
+	public FileInfo parseFile2(String line) {
+		String fileName = null;
+		StringBuffer content = new StringBuffer();
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < line.length(); i++) {
+			char charAt = line.charAt(i);
+
+			if (charAt == '\r') {
+				continue;
+			}
+			if (charAt == '\n') {
+				char[] tmp = { 'I', 'U', 'D', 'K' };
+				boolean flat = false;
+				if (i >= line.length() - 1) {
+					continue;
+				}
+				for (char t : tmp) {
+					if (line.charAt(i + 1) == t) {
+						flat = true;
+						break;
+					}
+				}
+				if (flat && line.charAt(i + 2) == SPLIT) {
+					sb.append(charAt);
+//					LOG.trace("line: [" + sb.toString() + "]");
+					content.append(sb);
+					sb.setLength(0);
+					continue;
+				}
+				if (!flat) {
+//					LOG.trace(charAt);
+				}
+				continue;
+			}
+			sb.append(charAt);
+		}
+
+		FileInfo fi = new FileInfo();
+		fi.setFileName(fileName);
+		fi.setContent(content.toString());
+		return fi;
 	}
 
 	public FileInfo parseFile(String line) {
@@ -126,7 +169,7 @@ public class FileClean {
 
 	public FileInfo parseFile(byte[] buff) throws Throwable {
 		String line = new String(buff, "utf-8");
-		return parseFile(line);
+		return parseFile2(line);
 	}
 
 	public FileInfo parseFile(File f) throws Throwable {

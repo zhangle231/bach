@@ -7,25 +7,33 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.MRJobConfig;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.LazyOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.bach.common.hadoop.mapreduce.FileClean.FileInfo;
 
-public class MapReduceTest extends Mapper<NullWritable, BytesWritable, Text, Text> {
+public class MapReduceTest2 extends Mapper<NullWritable, BytesWritable, Text, BytesWritable> {
+	
+	private Text fileNameKey;
+
+	@Override
+	protected void setup(Mapper<NullWritable, BytesWritable, Text, BytesWritable>.Context context)
+			throws IOException, InterruptedException {
+		FileSplit split = (FileSplit)context.getInputSplit();
+		Path path = split.getPath();
+		fileNameKey = new Text(path.toString());
+	}
 
 	@Override
 	protected void map(NullWritable key, BytesWritable value, Context context)
 			throws IOException, InterruptedException {
-		String line = new String(value.getBytes(), 0, value.getLength(), "GBK");
-
-		FileClean fc = new FileClean();
-		FileInfo fi = fc.parseFile(line);
-
-		context.write(new Text(fi.getFileName()), new Text(fi.getContent()));
+		context.write(fileNameKey, value);
 	}
 
 	public static void main(String[] args) {
@@ -35,38 +43,27 @@ public class MapReduceTest extends Mapper<NullWritable, BytesWritable, Text, Tex
 			System.setProperty("HADOOP_USER_NAME", "hdfs");
 
 			Configuration conf = new Configuration();
-			// 设置MapReduce的输出的分隔符为逗号
-			conf.set("mapred.textoutputformat.ignoreseparator", "true");
-//			char sep = 0x1b;
-//			conf.set("mapred.textoutputformat.separator", String.valueOf(sep));
-//			conf.set("mapred.textoutputformat.separator", ";");
 			
-//			conf.set("mapred.min.split.size", "1024000000");
-			
-			conf.set(MRJobConfig.NUM_MAPS, "10");
+			conf.set(MRJobConfig.NUM_MAPS, "1");
 
 			Job job = new Job(conf);
-			job.setJarByClass(MapReduceTest.class);
-			job.setJobName("test");
+			job.setJarByClass(MapReduceTest2.class);
+			job.setJobName("SmallFilesToSequenceFileConverter");
 
 			job.setInputFormatClass(WholeFileInputFormat.class);
+			job.setOutputFormatClass(SequenceFileOutputFormat.class);
 
-//			FileInputFormat.addInputPath(job, new Path("/test/tmp/"));
-//			FileInputFormat.addInputPath(job, new Path("/test/2019-05-04/"));
-			FileInputFormat.addInputPath(job, new Path("har:///archive/2019-05-04/2019-05-04.har"));
-			FileOutputFormat.setOutputPath(job, new Path("/out"));
+			FileInputFormat.addInputPath(job, new Path("/test/2019-05-04/"));
+//			FileInputFormat.addInputPath(job, new Path("har:///archive/2019-05-04/2019-05-04.har"));
+			FileOutputFormat.setOutputPath(job, new Path("/merge"));
 
-			LazyOutputFormat.setOutputFormatClass(job, MyTextOutputFormat.class);
-
-			job.setMapperClass(MapReduceTest.class);
-			job.setReducerClass(FileCleanReduce.class);
+			job.setMapperClass(MapReduceTest2.class);
 
 			job.setOutputKeyClass(Text.class);
-			job.setOutputValueClass(Text.class);
+			job.setOutputValueClass(BytesWritable.class);
 			
-			job.setNumReduceTasks(3);
+			job.setNumReduceTasks(2);
 
-//			System.exit(job.waitForCompletion(true) ? 0 : 1);
 			job.waitForCompletion(true);
 
 			System.out.println("job url:" + job.getHistoryUrl());

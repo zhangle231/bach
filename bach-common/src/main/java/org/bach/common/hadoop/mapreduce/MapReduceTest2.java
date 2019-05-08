@@ -14,6 +14,7 @@ import org.apache.hadoop.mapreduce.MRJobConfig;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.LazyOutputFormat;
 import org.bach.common.hadoop.mapreduce.FileClean.FileInfo;
 
 public class MapReduceTest2 extends Mapper<NullWritable, BytesWritable, Text, Text> {
@@ -43,11 +44,11 @@ public class MapReduceTest2 extends Mapper<NullWritable, BytesWritable, Text, Te
 		Text filenameKey = new Text(configuration.get(MRJobConfig.MAP_INPUT_FILE));
 		LOG.info(filenameKey.toString());
 		String line = new String(value.getBytes(), 0, value.getLength(), "GBK");
-		
+
 		FileClean fc = new FileClean();
 		FileInfo fi = fc.parseFile2(line);
 
-		context.write(filenameKey, new Text(fi.getContent()));		
+		context.write(filenameKey, new Text(fi.getContent()));
 	}
 
 	public static void main(String[] args) {
@@ -58,7 +59,7 @@ public class MapReduceTest2 extends Mapper<NullWritable, BytesWritable, Text, Te
 
 			Configuration conf = new Configuration();
 
-			conf.set(MRJobConfig.NUM_MAPS, "1");
+			conf.set(MRJobConfig.NUM_MAPS, "2");
 
 			Job job = new Job(conf);
 			job.setJarByClass(MapReduceTest2.class);
@@ -67,13 +68,17 @@ public class MapReduceTest2 extends Mapper<NullWritable, BytesWritable, Text, Te
 //			job.setInputFormatClass(WholeFileInputFormat.class);
 			job.setInputFormatClass(MyCombineFileInputFormat.class);
 //			job.setOutputFormatClass(SequenceFileOutputFormat.class);
+			job.setOutputFormatClass(MyTextOutputFormat.class);
 
-//			FileInputFormat.addInputPath(job, new Path("/test/2019-05-06"));
-			FileInputFormat.addInputPath(job, new Path("/test/tmp"));
+			FileInputFormat.addInputPath(job, new Path("/test/2019-05-01"));
+//			FileInputFormat.addInputPath(job, new Path("/test/tmp"));
 //			FileInputFormat.addInputPath(job, new Path("har:///archive/2019-05-04/2019-05-04.har"));
-			FileOutputFormat.setOutputPath(job, new Path("/out"));
+			FileOutputFormat.setOutputPath(job, new Path("/out/2019-05-01/"));
 
 			job.setMapperClass(MapReduceTest2.class);
+			job.setReducerClass(FileCleanReduce2.class);
+			
+			LazyOutputFormat.setOutputFormatClass(job, MyTextOutputFormat.class);
 
 			job.setOutputKeyClass(Text.class);
 			job.setOutputValueClass(Text.class);

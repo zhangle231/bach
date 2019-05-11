@@ -35,7 +35,7 @@ public class SwingTest {
 class BounceFrame extends JFrame {
 	private BallComponent comp;
 	public static final int STEPS = 1000;
-	public static final int DELAY = 3;
+	public static final int DELAY = 4;
 
 	public BounceFrame() {
 		setTitle("Bounce");

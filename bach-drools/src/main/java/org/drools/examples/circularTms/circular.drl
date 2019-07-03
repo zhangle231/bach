@@ -1,0 +1,23 @@
+package org.drools.examples.circularTms;
+dialect  "mvel"
+
+rule A when
+    String( this == "A" )
+then
+	System.out.println( "rule A" );
+	insertLogical( "C" );
+end
+
+rule C when
+    String( this == "B" )
+then
+    System.out.println( "rule C" );
+    insertLogical( "A" );
+end
+
+rule D when
+    String( this == "C" )
+then
+    System.out.println( "rule D" );
+    insertLogical( "A" );
+end

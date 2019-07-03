@@ -1,0 +1,54 @@
+<kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.drools.org/xsd/kmodule">
+	<kbase packages="org.bach.drools">
+		<ksession name="HelloWorldKS" />
+	</kbase>
+
+	<kbase name="FireKB" packages="org.bach.drools.fire">
+		<ksession name="FireKS" />
+	</kbase>
+
+	<kbase name="FireLogicalKB"
+		packages="org.bach.drools.fire.logical">
+		<ksession name="FireLogicalKS" />
+	</kbase>
+	<kbase name="BussPassGoodKB"
+		packages="org.bach.drools.buspass.good">
+		<ksession name="BussPassGoodKS" />
+	</kbase>
+	<kbase name="BussPassBadKB"
+		packages="org.bach.drools.buspass.bad">
+		<ksession name="BussPassBadKS" />
+	</kbase>
+	<kbase name="BussPassJTMSKS"
+		packages="org.bach.drools.buspass.jtms">
+		<ksession name="BussPassJTMSKS" beliefSystem="jtms" />
+	</kbase>
+	<kbase name="DiagnosticsKB"
+		packages="org.drools.examples.diagnostics">
+		<ksession name="DiagnosticsKS" />
+	</kbase>
+	<kbase name="CircularTmsKB"
+		packages="org.drools.examples.circularTms">
+		<ksession name="CircularTmsKS" />
+	</kbase>
+	<kbase name="BirdsFlyKB" packages="org.drools.examples.birdsfly">
+		<ksession name="BirdsFlyKS" beliefSystem="defeasible" />
+	</kbase>
+	<kbase name="StateSalienceKB"
+		packages="org.drools.examples.state.salience">
+		<ksession name="StateSalienceKS" />
+	</kbase>
+	<kbase name="StateAgendaGroupKB"
+		packages="org.drools.examples.state.agendagroup">
+		<ksession name="StateAgendaGroupKS" />
+	</kbase>
+	<kbase name="WumpusMainKB"
+		packages="org.drools.games.wumpus.server, org.drools.games.wumpus.server.view">
+		<ksession name="WumpusMainKS" />
+	</kbase>
+	<kbase name="WumpusClientKB"
+		packages="org.drools.games.wumpus.client">
+		<ksession name="WumpusClientKS" />
+	</kbase>
+</kmodule>

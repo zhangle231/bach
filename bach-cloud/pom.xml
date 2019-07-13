@@ -16,5 +16,6 @@
   <modules>
     <module>bach-cloud-ms-simple-provider-user</module>
     <module>bach-cloud-ms-simple-consumer-movie</module>
+    <module>bach-cloud-ms-discovery-eureka</module>
   </modules>
 </project>

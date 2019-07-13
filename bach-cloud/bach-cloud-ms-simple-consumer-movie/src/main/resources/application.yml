@@ -14,10 +14,10 @@ logging:
     root: INFO
 info:
   app:
-    name: "bach-cloud-ms-simple-consumer-movie"
-    encoding: "UTF-8"
+    name: "@project.artifactId@"
+    encoding: "@project.build.sourceEncoding@"
     java:
-      source: "1.8.0_212"
-      target: "1.8.0_212"
+      source: "@java.version@"
+      target: "@java.version@"
 user:
   userServiceUrl: http://localhost:8000/

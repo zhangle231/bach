@@ -10,7 +10,6 @@
     <body>  
         <div class="container">
             <h3>${msg}</h3>
-            
             <#list list as item>
 	            <div class="panel panel-default">
 				  <div class="panel-body">

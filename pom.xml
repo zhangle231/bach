@@ -10,6 +10,7 @@
     <module>bach-collect</module>
     <module>bach-drools</module>
     <module>bach-cloud</module>
+    <module>bach-web</module>
   </modules>
 	<build>
 		<plugins>

@@ -9,6 +9,7 @@
 		<module>bach-common</module>
     <module>bach-collect</module>
     <module>bach-drools</module>
+    <module>bach-cloud</module>
   </modules>
 	<build>
 		<plugins>

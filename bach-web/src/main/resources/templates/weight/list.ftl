@@ -3,7 +3,6 @@
 		<div><a href="add">add</a></div>
 		<div>list</divt>
 		<div>
-
 			<table border="1px">
 				<tr>
 					<th>date</th>

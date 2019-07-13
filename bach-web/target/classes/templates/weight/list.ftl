@@ -1,7 +1,6 @@
 <html>
 	<div>
-		<div><a href="add">add</a></div>
-		<div>list</divt>
+		<div><a href="add">add</a> List </div>
 		<div>
 			<table border="1px">
 				<tr>

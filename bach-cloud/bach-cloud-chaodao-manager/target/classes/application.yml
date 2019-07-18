@@ -1,0 +1,24 @@
+app:
+  datasource:
+    first:
+      url: jdbc:mysql://10.7.91.104/zentao
+      driverClassName: com.mysql.jdbc.Driver
+      username: admin
+      password: admin@123
+      configuration:
+        maximum-pool-size: 2
+    second:
+      url: jdbc:mysql://10.5.0.34/zheng
+      username: etl_user
+      password: etl_user
+      driverClassName: com.mysql.jdbc.Driver
+      configuration:
+        maximum-pool-size: 1
+logging:
+  level:
+    com.zaxxer.hikari.pool.HikariPool: DEBUG
+spring:
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true

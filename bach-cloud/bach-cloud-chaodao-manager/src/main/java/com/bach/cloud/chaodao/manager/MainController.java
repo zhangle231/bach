@@ -6,17 +6,21 @@ import com.bach.cloud.chaodao.manager.chaodao.Test;
 import com.bach.cloud.chaodao.manager.chaodao.TestRepository;
 import com.bach.cloud.chaodao.manager.chaodao.ZTBug;
 import com.bach.cloud.chaodao.manager.chaodao.ZTBugRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.Column;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class MainController {
+
+    private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
     TestRepository testRepository;
@@ -35,20 +39,54 @@ public class MainController {
         }
         return result;
     }
-
-    @GetMapping("/test1")
-    public BachAlarmNotification test1() {
-        return bachAlarmNotificationRepository.findBachAlarmNotificationByAlarmNum(337);
+    @GetMapping("/findBachAlarms")
+    public List<BachAlarmNotification> findBachAlarms() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, -1);
+        log.info("begin: {}", calendar.getTime());
+        return bachAlarmNotificationRepository.findDistinctBachAlarmNotificationByAlarmProtimeBetweenAndAlarmLevel(
+                calendar.getTime(),
+                new Date()
+                ,"urgent_alarm");
+    }
+    @GetMapping("/findZTBugByTitle")
+    public List<ZTBug> findZTBugByTitle(@RequestParam String title) {
+        return ztBugRepository.findZTBugByTitleAndStatus(title, "active");
     }
 
-    @GetMapping("/addZTBug")
-    public List<ZTBug> addZTBug() {
-        ZTBug ztBug = new ZTBug();
-        ztBug.setTitle("123");
+    @GetMapping("/monitor")
+    public String monitor() {
+        List<BachAlarmNotification> alarms = findBachAlarms();
+
+        Set<String> titles = new HashSet<>();
+        alarms.forEach(( alarm ) -> {
+            titles.add(alarm.newTitle());
+        });
+
+        log.info("titles size: {}", titles.size());
+
+        titles.forEach( (title) -> {
+            List<ZTBug> ztBugs = findZTBugByTitle(title);
+            if (ztBugs == null || ztBugs.size() == 0) {
+                //add
+                ZTBug ztBug = new ZTBug();
+                ztBug.setTitle(title);
+                addZTBug(ztBug);
+                log.info("save ztBug:{}", ztBug);
+            }
+        });
+
+        return "ok";
+    }
+
+    @PostMapping("/addZTBug")
+    public ZTBug addZTBug(ZTBug ztBug) {
+        if (ztBug.getTitle() == null) {
+            ztBug.setTitle("123");
+        }
         ztBug.setProduct(1);
         ztBug.setType("1");
         ztBug.setOpenedBy("1");
-        ztBug.setTitle("1");
         ztBug.setKeywords("123");
         ztBug.setPri(1);
         ztBug.setHardware("123");
@@ -68,8 +106,8 @@ public class MainController {
         ztBug.setResult(1);
         ztBug.setTesttask(1);
         ztBug.setLastediteddate(new Date());
-        ztBugRepository.save(ztBug);
-        return null;
+        ztBug.setStatus("active");
+        return ztBugRepository.save(ztBug);
     }
 }
 

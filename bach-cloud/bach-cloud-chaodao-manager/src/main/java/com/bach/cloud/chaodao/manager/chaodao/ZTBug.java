@@ -36,4 +36,5 @@ public class ZTBug {
     Integer result;
     Integer testtask;
     Date lastediteddate;
+    String status;
 }

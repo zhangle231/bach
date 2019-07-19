@@ -6,7 +6,7 @@ app:
       username: admin
       password: admin@123
       configuration:
-        maximum-pool-size: 2
+        maximum-pool-size: 1
     second:
       url: jdbc:mysql://10.5.0.34/zheng
       username: etl_user

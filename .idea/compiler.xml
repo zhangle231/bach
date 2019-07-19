@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bach-cloud-ms-simple-consumer-movie" />
+        <module name="bach-web" />
         <module name="bach-drools" />
         <module name="bach-cloud-ms-simple-provider-user" />
         <module name="bach-common" />
@@ -19,6 +20,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="bach-cloud-chaodao-manager" options="-parameters" />
+      <module name="bach-web" options="-parameters" />
     </option>
   </component>
 </project>

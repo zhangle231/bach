@@ -14,6 +14,7 @@
         <module name="bach-cloud-ms-discovery-eureka" />
         <module name="bach-collect" />
         <module name="bach-cloud-chaodao-manager" />
+        <module name="bach-kafka-client" />
       </profile>
     </annotationProcessing>
   </component>

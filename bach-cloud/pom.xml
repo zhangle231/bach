@@ -18,5 +18,6 @@
     <module>bach-cloud-ms-simple-consumer-movie</module>
     <module>bach-cloud-ms-discovery-eureka</module>
       <module>bach-cloud-chaodao-manager</module>
+      <module>bach-kafka-client</module>
   </modules>
 </project>

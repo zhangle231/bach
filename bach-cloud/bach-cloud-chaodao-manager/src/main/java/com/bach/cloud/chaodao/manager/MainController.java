@@ -9,6 +9,7 @@ import com.bach.cloud.chaodao.manager.chaodao.ZTBugRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,15 @@ public class MainController {
     @Autowired
     ZTBugRepository ztBugRepository;
 
+    @Autowired
+    KafkaTemplate kafkaTemplate;
+
+    @GetMapping("/kafka")
+    public String kafka() {
+        kafkaTemplate.send("test","123123123123");
+        return "ok";
+    }
+
     @GetMapping("/test")
     public List<Test> test() {
         List<Test> result = new ArrayList<>();
@@ -52,6 +62,11 @@ public class MainController {
     @GetMapping("/findZTBugByTitle")
     public List<ZTBug> findZTBugByTitle(@RequestParam String title) {
         return ztBugRepository.findZTBugByTitleAndStatus(title, "active");
+    }
+
+    @GetMapping("/findActiveZTBugs")
+    public List<ZTBug> findActiveZTBugs() {
+        return ztBugRepository.findZTBugByStatus("active");
     }
 
     @GetMapping("/monitor")

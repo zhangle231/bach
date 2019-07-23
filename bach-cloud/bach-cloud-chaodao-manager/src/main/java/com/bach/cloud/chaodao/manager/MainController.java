@@ -2,6 +2,8 @@ package com.bach.cloud.chaodao.manager;
 
 import com.bach.cloud.chaodao.manager.alarm.BachAlarmNotification;
 import com.bach.cloud.chaodao.manager.alarm.BachAlarmNotificationRepository;
+import com.bach.cloud.chaodao.manager.alarm.BachAlarmPermissionRole;
+import com.bach.cloud.chaodao.manager.alarm.BachAlarmPermissionRoleRepository;
 import com.bach.cloud.chaodao.manager.chaodao.Test;
 import com.bach.cloud.chaodao.manager.chaodao.TestRepository;
 import com.bach.cloud.chaodao.manager.chaodao.ZTBug;
@@ -35,6 +37,36 @@ public class MainController {
     @Autowired
     KafkaTemplate kafkaTemplate;
 
+    @Autowired
+    BachAlarmPermissionRoleRepository bachAlarmPermissionRoleRepository;
+
+    @GetMapping("/getMonitorNums")
+    public Set<Integer> getMonitorNums() {
+        List<BachAlarmPermissionRole> roles = bachAlarmPermissionRoleRepository.findBachAlarmPermissionRoleByRoleId(31);
+        Set<Integer> monNums = new HashSet<>();
+        roles.forEach((role) -> {
+            monNums.add(role.getMonitorNum());
+        });
+
+        return monNums;
+    }
+    @GetMapping("/findBachAlarmsForPlatForm")
+    public List<BachAlarmNotification> findBachAlarmsForPlatForm() {
+        List<BachAlarmNotification> alarms = findBachAlarms();
+        List<BachAlarmPermissionRole> roles = bachAlarmPermissionRoleRepository.findBachAlarmPermissionRoleByRoleId(31);
+        Set<Integer> monNums = new HashSet<>();
+        roles.forEach((role) -> {
+            monNums.add(role.getMonitorNum());
+        });
+
+        List<BachAlarmNotification> result = new ArrayList<>();
+        alarms.forEach((alarm) -> {
+            if (monNums.contains(alarm.getAlarmNum())) {
+                result.add(alarm);
+            }
+        });
+        return result;
+    }
     @GetMapping("/kafka")
     public String kafka() {
         kafkaTemplate.send("test","123123123123");

@@ -8,12 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="bach-web" />
         <module name="bach-drools" />
-        <module name="bach-cloud-chaodao-manager" />
+        <module name="bach-cloud-ms-simple-consumer-movie" />
         <module name="bach-cloud-ms-simple-provider-user" />
         <module name="bach-common" />
         <module name="bach-cloud-ms-discovery-eureka" />
         <module name="bach-collect" />
-        <module name="bach-cloud-ms-simple-consumer-movie" />
+        <module name="bach-cloud-chaodao-manager" />
         <module name="bach-kafka-client" />
       </profile>
     </annotationProcessing>

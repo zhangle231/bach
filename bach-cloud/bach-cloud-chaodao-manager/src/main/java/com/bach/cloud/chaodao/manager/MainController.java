@@ -103,7 +103,7 @@ public class MainController {
 
     @GetMapping("/monitor")
     public String monitor() {
-        List<BachAlarmNotification> alarms = findBachAlarms();
+        List<BachAlarmNotification> alarms = findBachAlarmsForPlatForm();
 
         Set<String> titles = new HashSet<>();
         alarms.forEach(( alarm ) -> {

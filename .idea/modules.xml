@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/bach.iml" filepath="$PROJECT_DIR$/.idea/bach.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-cloud/bach-cloud.iml" filepath="$PROJECT_DIR$/bach-cloud/bach-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-cloud/bach-cloud-chaodao-manager/bach-cloud-chaodao-manager.iml" filepath="$PROJECT_DIR$/bach-cloud/bach-cloud-chaodao-manager/bach-cloud-chaodao-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-cloud/bach-cloud-ms-discovery-eureka/bach-cloud-ms-discovery-eureka.iml" filepath="$PROJECT_DIR$/bach-cloud/bach-cloud-ms-discovery-eureka/bach-cloud-ms-discovery-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-cloud/bach-cloud-ms-simple-consumer-movie/bach-cloud-ms-simple-consumer-movie.iml" filepath="$PROJECT_DIR$/bach-cloud/bach-cloud-ms-simple-consumer-movie/bach-cloud-ms-simple-consumer-movie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-cloud/bach-cloud-ms-simple-provider-user/bach-cloud-ms-simple-provider-user.iml" filepath="$PROJECT_DIR$/bach-cloud/bach-cloud-ms-simple-provider-user/bach-cloud-ms-simple-provider-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-collect/bach-collect.iml" filepath="$PROJECT_DIR$/bach-collect/bach-collect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-common/bach-common.iml" filepath="$PROJECT_DIR$/bach-common/bach-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-drools/bach-drools.iml" filepath="$PROJECT_DIR$/bach-drools/bach-drools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-cloud/bach-kafka-client/bach-kafka-client.iml" filepath="$PROJECT_DIR$/bach-cloud/bach-kafka-client/bach-kafka-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-web/bach-web.iml" filepath="$PROJECT_DIR$/bach-web/bach-web.iml" />
+    </modules>
+  </component>
+</project>

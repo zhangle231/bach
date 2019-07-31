@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: jdk.tools:jdk.tools:1.6">
+    <CLASSES>
+      <root url="jar://C:/jdk1.8.0_131/lib/tools.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://C:/jdk1.8.0_131/jre/../lib/jdk.tools-1.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://C:/jdk1.8.0_131/jre/../lib/jdk.tools-1.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

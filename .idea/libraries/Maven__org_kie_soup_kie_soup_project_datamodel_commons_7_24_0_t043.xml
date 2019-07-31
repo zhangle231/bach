@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.kie.soup:kie-soup-project-datamodel-commons:7.24.0.t043">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/kie/soup/kie-soup-project-datamodel-commons/7.24.0.t043/kie-soup-project-datamodel-commons-7.24.0.t043.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/kie/soup/kie-soup-project-datamodel-commons/7.24.0.t043/kie-soup-project-datamodel-commons-7.24.0.t043-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/kie/soup/kie-soup-project-datamodel-commons/7.24.0.t043/kie-soup-project-datamodel-commons-7.24.0.t043-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

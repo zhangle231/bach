@@ -17,7 +17,7 @@ info:
     name: "bach-cloud-ms-simple-consumer-movie"
     encoding: "UTF-8"
     java:
-      source: "1.8.0_212"
-      target: "1.8.0_212"
+      source: "1.8.0_131"
+      target: "1.8.0_131"
 user:
   userServiceUrl: http://localhost:8000/

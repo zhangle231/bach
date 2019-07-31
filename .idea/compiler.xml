@@ -8,15 +8,28 @@
         <outputRelativeToContentRoot value="true" />
         <module name="bach-web" />
         <module name="bach-drools" />
-        <module name="bach-cloud-ms-simple-consumer-movie" />
+        <module name="bach-cloud-chaodao-manager" />
         <module name="bach-cloud-ms-simple-provider-user" />
         <module name="bach-common" />
         <module name="bach-cloud-ms-discovery-eureka" />
         <module name="bach-collect" />
-        <module name="bach-cloud-chaodao-manager" />
+        <module name="bach-cloud-ms-simple-consumer-movie" />
         <module name="bach-kafka-client" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bach" target="1.8" />
+      <module name="bach-cloud" target="1.8" />
+      <module name="bach-cloud-chaodao-manager" target="1.8" />
+      <module name="bach-cloud-ms-discovery-eureka" target="1.8" />
+      <module name="bach-cloud-ms-simple-consumer-movie" target="1.8" />
+      <module name="bach-cloud-ms-simple-provider-user" target="1.8" />
+      <module name="bach-collect" target="1.8" />
+      <module name="bach-common" target="1.8" />
+      <module name="bach-drools" target="1.8" />
+      <module name="bach-kafka-client" target="1.8" />
+      <module name="bach-web" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

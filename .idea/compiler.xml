@@ -7,14 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="bach-web" />
+        <module name="bach-monitor" />
         <module name="bach-drools" />
-        <module name="bach-cloud-ms-simple-consumer-movie" />
-        <module name="bach-cloud-ms-simple-provider-user" />
+        <module name="bach-cloud-chaodao-manager" />
         <module name="bach-web-thymeleaf" />
+        <module name="bach-cloud-ms-simple-provider-user" />
         <module name="bach-common" />
         <module name="bach-cloud-ms-discovery-eureka" />
         <module name="bach-collect" />
-        <module name="bach-cloud-chaodao-manager" />
+        <module name="bach-cloud-ms-simple-consumer-movie" />
         <module name="bach-kafka-client" />
       </profile>
     </annotationProcessing>
@@ -29,6 +30,7 @@
       <module name="bach-common" target="1.8" />
       <module name="bach-drools" target="1.8" />
       <module name="bach-kafka-client" target="1.8" />
+      <module name="bach-monitor" target="1.8" />
       <module name="bach-web" target="1.8" />
       <module name="bach-web-thymeleaf" target="1.8" />
     </bytecodeTargetLevel>
@@ -36,6 +38,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="bach-cloud-chaodao-manager" options="-parameters" />
+      <module name="bach-monitor" options="-parameters" />
       <module name="bach-web" options="-parameters" />
       <module name="bach-web-thymeleaf" options="-parameters" />
     </option>

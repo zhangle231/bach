@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/bach-common/bach-common.iml" filepath="$PROJECT_DIR$/bach-common/bach-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/bach-drools/bach-drools.iml" filepath="$PROJECT_DIR$/bach-drools/bach-drools.iml" />
       <module fileurl="file://$PROJECT_DIR$/bach-cloud/bach-kafka-client/bach-kafka-client.iml" filepath="$PROJECT_DIR$/bach-cloud/bach-kafka-client/bach-kafka-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bach-monitor/bach-monitor.iml" filepath="$PROJECT_DIR$/bach-monitor/bach-monitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/bach-web/bach-web.iml" filepath="$PROJECT_DIR$/bach-web/bach-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/bach-web-thymeleaf/bach-web-thymeleaf.iml" filepath="$PROJECT_DIR$/bach-web-thymeleaf/bach-web-thymeleaf.iml" />
     </modules>

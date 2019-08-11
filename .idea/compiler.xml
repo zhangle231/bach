@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="bach-web" />
         <module name="bach-monitor" />
+        <module name="bach-web" />
         <module name="bach-drools" />
         <module name="bach-cloud-chaodao-manager" />
         <module name="bach-web-thymeleaf" />
@@ -16,6 +16,7 @@
         <module name="bach-cloud-ms-discovery-eureka" />
         <module name="bach-collect" />
         <module name="bach-cloud-ms-simple-consumer-movie" />
+        <module name="bach-doc" />
         <module name="bach-kafka-client" />
       </profile>
     </annotationProcessing>
@@ -28,6 +29,7 @@
       <module name="bach-cloud-ms-simple-provider-user" target="1.8" />
       <module name="bach-collect" target="1.8" />
       <module name="bach-common" target="1.8" />
+      <module name="bach-doc" target="1.5" />
       <module name="bach-drools" target="1.8" />
       <module name="bach-kafka-client" target="1.8" />
       <module name="bach-monitor" target="1.8" />

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="salutation">123</div>
+
+<head th:fragment="common_header(title,links)">
+
+    <title th:replace="${title}">The awesome application</title>
+
+    <!-- Common styles and scripts -->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/awesomeapp.css}">
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+    <script type="text/javascript" th:src="@{/sh/scripts/codebase.js}"></script>
+
+    <!--/* Per-page placeholder for additional links */-->
+    <th:block th:replace="${links}" />
+
+</head>
+
+
+<div th:fragment="copy">
+    &copy; 2011 The Good Thymes Virtual Grocery
+</div>
+
+<div th:fragment="frag(onevar,twovar)">
+    <div th:assert="(${onevar} != 43),(${twovar} != 43)">...</div>
+    <p th:text="${onevar} + '-' + ${twovar}"></p>
+</div>
+
+</body>
+
+</html>

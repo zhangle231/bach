@@ -1,0 +1,119 @@
+<!--
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="footer :: common_header(~{::title},~{::link})">
+
+    <title>Awesome - Main</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/themes/smoothness/jquery-ui.css}">
+
+</head>
+
+<body>
+
+<h1>list</h1>
+
+<div th:insert="~{footer :: salutation} ?: _">
+     for help-desk support.
+</div>
+
+
+<div th:insert="~{footer :: copy}"></div>
+
+<div th:insert="footer :: copy"></div>
+
+<div th:replace="footer :: frag (onevar=432,twovar=431)">...</div>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+<section>
+    <p>Page content</p>
+    <div>Included on page</div>
+</section>
+</body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+</head>
+
+<body>
+
+<p th:text="#{home.welcome}">Welcome to our grocery store!</p>
+
+<p th:utext="#{home.welcome(${test})}">Welcome to our grocery store!</p>
+
+<p>Today is: <span th:text="${test}">13 February 2011</span></p>
+
+<div th:object="${address}">
+    <p th:text="*{street}">Welcome to our grocery store!</p>
+    <p th:text="*{postcode}">Welcome to our grocery store!</p>
+</div>
+
+<p th:text="${#request}">ctx</p>
+
+Established locale country: <span th:text="${#locale.country}">US</span>.
+
+<p th:text="${#execInfo}">ctx</p>
+
+<a href="details.html"
+   th:href="@{http://localhost:8080/gtvg/order/details(orderId=${test})}">view</a>
+
+<!-- Will produce '/gtvg/order/details?orderId=3' (plus rewriting) -->
+<a href="details.html" th:href="@{/order/details(orderId=${test})}">view</a>
+
+<a href="details.html" th:href="@{/order/{orderId}/details(orderId=${test})}">view</a>
+
+<a th:href="@{${url}(orderId=${test})}">view</a>
+<a th:href="@{'/details/'+${test}(orderId=${test})}">view</a>
+
+<p>Please select an option</p>
+<ol>
+    <li><a href="product/list.html" th:href="@{/product/list}">Product List</a></li>
+    <li><a href="order/list.html" th:href="@{/order/list}">Order List</a></li>
+    <li><a href="subscribe.html" th:href="@{/subscribe}">Subscribe to our Newsletter</a></li>
+    <li><a href="userprofile.html" th:href="@{/userprofile}">See User Profile</a></li>
+    <li><a href="userprofile.html" th:href="@{~/path/to/something}">See User Profile</a></li>
+</ol>
+
+<p>
+    Now you are looking at a <span th:text="'working web application'">template file</span>.
+</p>
+
+<p>The year is <span th:text="2013">1492</span>.</p>
+<p>In two years, it will be <span th:text="2013 + 2">1494</span>.</p>
+
+<div th:if="${test} != false">
+    <span th:text="|Welcome to our application, ${test}!|"></span>
+</div>
+
+<div th:with="isEven=(3 % 2 == 0)">
+    <span th:text="${isEven}"></span>
+</div>
+
+<!--
+<p th:text="${#ctx}">ctx</p>
+-->
+</body>
+
+</html>

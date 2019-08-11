@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,16 +30,17 @@ public class CustomerController {
             lstCustomers.add(new Customer(new Long(10), "Brice", 32, new Address("Atlanta, GA 30334", "30334")));
         }
 
-        @GetMapping
-        public String index() {
-            return "redirect:/customer";
-        }
+//        @GetMapping
+//        public String index() {
+//            return "redirect:/customer";
+//        }
 
         @GetMapping("/customer")
         public String getCustomer(Model model) {
             model.addAttribute("customers", lstCustomers);
             Address user = new Address("123", "1231");
             model.addAttribute("user",user);
+            model.addAttribute("new_date",new Date());
             return "customer/customer.table.html";
         }
 }

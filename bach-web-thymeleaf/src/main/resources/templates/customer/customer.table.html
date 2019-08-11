@@ -13,11 +13,23 @@
 <body>
 <div class="container">
     <div class="row">
-        <input type="text" name="userName" value="James Carrot" th:value="${user.postcode}" />
+        <form action="#" th:action="@{/seedstartermng}" th:object="${new_date}" method="post">
+            <input type="text" name="userName" value="James Carrot" th:value="${user.postcode}" />
+        </form>
     </div>
     <div class="row">
         <p th:text="#{home.welcome}">Welcome to our grocery store!</p>
     </div>
+    <div class="row">
+        <p th:text="${{new_date}}">date</p>
+    </div>
+    <div class="row">
+        <td th:text="${true} ? #{bool.true} : #{bool.false}">yes</td>
+    </div>
+    <div class="row">
+        <td th:text="${#strings.arrayJoin(#strings.arrayPrepend({'123','321'},'2'), '-')}">yes</td>
+    </div>
+
     <h1>Customer Table</h1>
     <div class="row col-md-7 table-responsive">
         <table id="customerTable" class="table">

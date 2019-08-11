@@ -15,6 +15,7 @@
         <module>bach-web-thymeleaf</module>
 		<module>bach-monitor</module>
         <module>bach-doc</module>
+        <module>bach-ssm</module>
     </modules>
     <build>
         <plugins>

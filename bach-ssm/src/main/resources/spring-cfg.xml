@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--自定义实现，在spring类对象初始化时执行-->
+    <bean id="beanPostProcessor" class="com.bach.ssm.BeanPostProcessorImpl"></bean>
+
+    <bean id="juiceMaker" class="com.bach.ssm.JuiceMaker" init-method="init" destroy-method="myDestory">
+        <property name="fruit" value="橙汁"/>
+    </bean>
+
+    <!-- 通过带参数的构造方法，创建对象 -->
+    <bean id="iocTestClass" class="com.bach.ssm.IocTestClass">
+        <constructor-arg index="0" value="名字" />
+    </bean>
+
+    <!-- 通过属性，创建对象 -->
+    <bean id="iocTestClass2" class="com.bach.ssm.IocTestClass2">
+        <property name="name" value="名字2" />
+    </bean>
+</beans>

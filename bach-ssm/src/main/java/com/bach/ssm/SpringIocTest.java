@@ -11,8 +11,12 @@ public class SpringIocTest {
         JuiceMaker juiceMaker = (JuiceMaker) ctx.getBean("juiceMaker");
         IocTestClass iocTestClass = (IocTestClass) ctx.getBean("iocTestClass");
         IocTestClass2 iocTestClass2 = (IocTestClass2) ctx.getBean("iocTestClass2");
+        ComplexAssembly complexAssembly = (ComplexAssembly) ctx.getBean("complexAssembly");
+        UserRoleAssembly userRoleAssembly = (UserRoleAssembly) ctx.getBean("userRoleAssembly");
         System.out.println(iocTestClass);
         System.out.println(iocTestClass2);
+        System.out.println(complexAssembly);
+        System.out.println(userRoleAssembly);
         ctx.close();
     }
 }

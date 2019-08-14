@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--自定义实现，在spring类对象初始化时执行-->
     <bean id="beanPostProcessor" class="com.bach.ssm.BeanPostProcessorImpl"></bean>
@@ -13,11 +15,105 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 通过带参数的构造方法，创建对象 -->
     <bean id="iocTestClass" class="com.bach.ssm.IocTestClass">
-        <constructor-arg index="0" value="名字" />
+        <constructor-arg index="0" value="名字"/>
     </bean>
 
     <!-- 通过属性，创建对象 -->
     <bean id="iocTestClass2" class="com.bach.ssm.IocTestClass2">
-        <property name="name" value="名字2" />
+        <property name="name" value="名字2"/>
+    </bean>
+
+    <bean id="complexAssembly" class="com.bach.ssm.ComplexAssembly">
+        <property name="id" value="1"/>
+        <property name="list">
+            <list>
+                <value>value-list-1</value>
+                <value>value-list-2</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="key1" value="value-key-1"/>
+                <entry key="key2" value="value-key-2"/>
+                <entry key="key3" value="value-key-3"/>
+            </map>
+        </property>
+        <property name="props">
+            <props>
+                <prop key="prop1">value-prop-1</prop>
+                <prop key="prop2">value-prop-2</prop>
+                <prop key="prop3">value-prop-3</prop>
+            </props>
+        </property>
+        <property name="set">
+            <set>
+                <value>value-set-1</value>
+                <value>value-set-2</value>
+                <value>value-set-3</value>
+            </set>
+        </property>
+        <property name="array">
+            <array>
+                <value>value-array-1</value>
+                <value>value-array-2</value>
+                <value>value-array-3</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="role1" class="com.bach.ssm.Role">
+        <property name="id" value="1"/>
+        <property name="roleName" value="role_name_1"/>
+        <property name="note" value="role_note_1"/>
+    </bean>
+
+    <bean id="role2" class="com.bach.ssm.Role">
+        <property name="id" value="2"/>
+        <property name="roleName" value="role_name_2"/>
+        <property name="note" value="role_note_2"/>
+    </bean>
+
+    <!-- p/c 标签很好用，使配置简化了很多 -->
+    <bean id="role3" class="com.bach.ssm.Role" p:id="3" p:roleName="role_name_3" p:note="role_note_3" />
+
+    <bean id="role4" class="com.bach.ssm.Role" c:id="4" c:roleName="role_name_4" c:note="role_note_4" />
+
+    <bean id="role5" class="com.bach.ssm.Role" c:_0="5" c:_1="role_name_5" c:_2="role_note_5" />
+
+    <bean id="user1" class="com.bach.ssm.User">
+        <property name="id" value="1"/>
+        <property name="userName" value="user_name_1"/>
+        <property name="note" value="role_note_1"/>
+    </bean>
+
+    <bean id="user2" class="com.bach.ssm.User">
+        <property name="id" value="2"/>
+        <property name="userName" value="user_name_2"/>
+        <property name="note" value="role_note_2"/>
+    </bean>
+
+    <bean id="userRoleAssembly" class="com.bach.ssm.UserRoleAssembly">
+        <property name="id" value="1"/>
+        <property name="list">
+            <list>
+                <ref bean="role1"/>
+                <ref bean="role2"/>
+                <ref bean="role3"/>
+                <ref bean="role4"/>
+                <ref bean="role5"/>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key-ref="role1" value-ref="user1"/>
+                <entry key-ref="role2" value-ref="user2"/>
+            </map>
+        </property>
+        <property name="set">
+            <set>
+                <ref bean="role1"/>
+                <ref bean="role2"/>
+            </set>
+        </property>
     </bean>
 </beans>

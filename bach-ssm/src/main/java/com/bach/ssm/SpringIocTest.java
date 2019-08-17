@@ -1,7 +1,6 @@
 package com.bach.ssm;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 public class SpringIocTest {
     public static void main(String[] args) {
         /*
@@ -18,5 +17,6 @@ public class SpringIocTest {
         System.out.println(complexAssembly);
         System.out.println(userRoleAssembly);
         ctx.close();
+        
     }
 }
